@@ -1,11 +1,14 @@
 const express = require("express");
-const main = require("./aiChatting");
+const main = require("../aiChatting");
 const cors=require("cors")
 const app = express();
+require("dotenv").config();
 app.use(express.json());
 app.use(cors());
-app.listen(3000, () => {
-  console.log("Listening at Port 3000");
+
+const Port =process.env.PORT;
+app.listen(Port, () => {
+  console.log(`Listening at Port ${Port}`);
 });
 // app.use('/',(req,res,next)=>{
 //   res.send("Chatbot is alive")
@@ -24,7 +27,7 @@ app.post("/chat", async (req, res) => {
     ...history,
     {
       role: "user",
-      parts: [{ text: msg+"try to give me response in less than 6 lines but for detail problem give me proper resposnse and don't mention ever about less lines or conscise in response don't mention try too" }],
+      parts: [{ text: msg+"  try to give me response in less than 6 lines but for detail problem give me proper resposnse and don't mention ever about less lines or conscise in response don't mention try too" }],
     },
   ];
 
